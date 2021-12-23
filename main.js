@@ -6,6 +6,7 @@
     var myTitle = document.getElementById('Title');
     var myAuthor = document.getElementById('Author');
     var myPrice = document.getElementById('Prix');
+    var myEmail = document.getElementById('Email');
     var myDate = document.getElementById('date');
     var myLangue = document.getElementById('langue');
     // var myselect = document.getElementById('select');
@@ -16,6 +17,7 @@
     var erreurTitle = document.getElementById("erreurTitle");
     var erreurAuthor = document.getElementById("erreurAuthor");
     var erreurprice = document.getElementById("erreurprice");
+    var erreurEmail = document.getElementById("erreurEmail");
     var erreurdate = document.getElementById("erreurdate");
     var erreurLangue = document.getElementById("erreurLangue");
     var erreurType = document.getElementById("erreurType");
@@ -81,20 +83,6 @@
             
         }
 
-        class book {
-            constructor(title, author, email, price, date, language, type){
-                this.title = title
-                this.author = author
-                this.email = email
-                this.price = price
-                this.date = date
-                this.language = language
-                this.type = type
-            }
-            DétailOuvrage(){
-                return "book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
-            }
-        }
 
 MyForm.addEventListener("submit", function(e)
 {
@@ -154,9 +142,9 @@ MyForm.addEventListener("submit", function(e)
 
 
     if(myPrice.value ==""){
-            erreurprice.innerHTML = ('This field is required');
-            erreurprice.style.color ='red';
-            validationOK = false;
+        erreurprice.innerHTML = ('This field is required');
+        erreurprice.style.color ='red';
+        validationOK = false;
     }
     else if(!isNaN(myPrice.value) ){
         if(myPrice.value>0){
@@ -175,7 +163,18 @@ MyForm.addEventListener("submit", function(e)
         validationOK = false;
     }
     
-    
+
+        // --------------- myEmail -----------------
+        
+        if(myEmail.value !==""){
+            
+        }
+        else{
+            erreurEmail.innerHTML =('This field is required');
+            erreurEmail.style.color ='red' ;
+            validationOK = false;
+        }
+
         // --------------- mydate -----------------
 
 
@@ -221,6 +220,21 @@ MyForm.addEventListener("submit", function(e)
     if(validationOK ){
 
         // alert('Formulaire envoyé !') ;
+
+                class book {
+                    constructor(title, author, email, price, date, language, type){
+                        this.title = title
+                        this.author = author
+                        this.email = email
+                        this.price = price
+                        this.date = date
+                        this.language = language
+                        this.type = type
+                    }
+                    DétailOuvrage(){
+                        return "book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
+                    }
+                }
 
         // ------------------ Methode 1: insertRow / insertCell --------------------
 
