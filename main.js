@@ -81,7 +81,20 @@
             
         }
 
-
+        class book {
+            constructor(title, author, email, price, date, language, type){
+                this.title = title
+                this.author = author
+                this.email = email
+                this.price = price
+                this.date = date
+                this.language = language
+                this.type = type
+            }
+            DétailOuvrage(){
+                return "book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
+            }
+        }
 
 MyForm.addEventListener("submit", function(e)
 {
@@ -94,23 +107,23 @@ MyForm.addEventListener("submit", function(e)
         
     if( myTitle.value.trim() =="" )
     {
-        erreurTitle.innerHTML = ('Remplire le champs');
+        erreurTitle.innerHTML = ('This field is required');
         erreurTitle.style.color ='red';
         validationOK = false;  
     }
     else if(!isNaN(myTitle.value)){
-        erreurTitle.innerHTML = (' Entrer des lettres');
+        erreurTitle.innerHTML = ('Enter letters');
         erreurTitle.style.color ='red';
         validationOK = false; 
     }
     else if(myTitle.value.length>30){
-        erreurTitle.innerHTML = (' Vous dépassez 30 lettres');
+        erreurTitle.innerHTML = ('Enter less than 30 letters');
         erreurTitle.style.color ='red';
         validationOK = false;
     }
 
     else {
-        erreurTitle.innerHTML = ('Validé');
+        erreurTitle.innerHTML = ('Valid');
         erreurTitle.style.color ='#006400';
     }
     
@@ -118,22 +131,22 @@ MyForm.addEventListener("submit", function(e)
 
 
     if( myAuthor.value.trim() ==""){
-        erreurAuthor.innerHTML = ('Remplire le champs');
+        erreurAuthor.innerHTML = ('This field is required');
         erreurAuthor.style.color ='red';
         validationOK = false;  
     }
     else if(!isNaN(myAuthor.value)){
-        erreurAuthor.innerHTML = ('Entrer des lettres');
+        erreurAuthor.innerHTML = ('Enter letters');
         erreurAuthor.style.color ='red';
         validationOK = false;
     }
     else if(myAuthor.value.length>30){
-        erreurAuthor.innerHTML = ('Vous dépassez 30 lettres');
+        erreurAuthor.innerHTML = ('Enter less than 30 letters');
         erreurAuthor.style.color ='red';
         validationOK = false;
     }
     else{
-        erreurAuthor.innerHTML = ('Validé');
+        erreurAuthor.innerHTML = ('Valid');
         erreurAuthor.style.color ='#006400';
     }
 
@@ -141,23 +154,23 @@ MyForm.addEventListener("submit", function(e)
 
 
     if(myPrice.value ==""){
-            erreurprice.innerHTML = ('Remplire le champs ');
+            erreurprice.innerHTML = ('This field is required');
             erreurprice.style.color ='red';
             validationOK = false;
     }
     else if(!isNaN(myPrice.value) ){
         if(myPrice.value>0){
-            erreurprice.innerHTML = ('validé');
+            erreurprice.innerHTML = ('Valid');
             erreurprice.style.color ='#006400';
         }
         else{
-            erreurprice.innerHTML = ("Entrer un nembre >0 !");
+            erreurprice.innerHTML = ("Enter a number >0 !");
             erreurprice.style.color ='red';
             validationOK = false;
         }
     }
     else{
-        erreurprice.innerHTML = ("Entrer un nembre");
+        erreurprice.innerHTML = ("Enter number");
         erreurprice.style.color ='red';
         validationOK = false;
     }
@@ -167,12 +180,12 @@ MyForm.addEventListener("submit", function(e)
 
 
     if(myDate.value ==""){
-        erreurdate.innerHTML = ('Remplire le champs');
+        erreurdate.innerHTML = ('This field is required');
         erreurdate.style.color ='red';
         validationOK = false;
     }
     else{
-        erreurdate.innerHTML = ('validé');
+        erreurdate.innerHTML = ('Valid');
         erreurdate.style.color ='#006400';
     }
     
@@ -185,7 +198,7 @@ MyForm.addEventListener("submit", function(e)
         validationOK = false;
     } 
     else{
-        erreurLangue.innerHTML = ('Validé');
+        erreurLangue.innerHTML = ('Valid');
         erreurLangue.style.color ='#006400';
     }  
 
@@ -198,7 +211,7 @@ MyForm.addEventListener("submit", function(e)
         validationOK = false;
     } 
     else{
-        erreurType.innerHTML = ('Validé');
+        erreurType.innerHTML = ('Valid');
         erreurType.style.color ='#006400';   
     }
     
