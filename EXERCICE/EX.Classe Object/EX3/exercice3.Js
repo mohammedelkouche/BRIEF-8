@@ -9,19 +9,20 @@
 
 
 
-
-
 var text = document.getElementById("text") ;
 var Nombre= document.getElementById("Nombre") ;
 var ListePersonnes = [];
 var Table = document.getElementsByTagName("table")[0];
-// class
+var Trie = document.getElementById("Trie")
+
+// class personnes
 class personnes {
     constructor(nom,age){
         this.nom = nom ;
         this.age = age ;
     }
 }
+
 // vider le tableau HTML
 
 function vider (){
@@ -32,23 +33,26 @@ function vider (){
         Table.removeChild(tableRow[x]);
         }   
 }
+
 //------- charger le tableau HTML
 
 function charger(){
-       
+   
+    vider () ;
+ 
     for(i=0 ; i< ListePersonnes.length ;i++ ){
+
         var tr = document.createElement("tr");
         Table.appendChild(tr);
         tr.innerHTML  +=  "<td>"+ListePersonnes[i].nom+"</td><td>"+ListePersonnes[i].age+"</td>" ;
-        console.log(ListePersonnes)
 
     }
 }
-//------- validé et et pucher ListePersonnes javascript
+
+//------- validé et et charger ListePersonnes javascript
 
 function AJOUTER(){
     if(text.value!="" && Nombre.value!=""){
-        vider ()
         var Personne = new personnes(text.value , Nombre.value);
         ListePersonnes.push(Personne);
         charger();
@@ -58,11 +62,67 @@ function AJOUTER(){
 }
 
 
+     // "TRIER"
+Trie.addEventListener('change', function(){
+let valeurTri = Trie.value;
+switch(valeurTri){
+    case 'tri1':
+        trier("nom", "asc");
+        break;
+    case 'tri2':
+        trier("nom", "dsc");
+        break;
+    case 'tri3':
+        trier("age", "asc");
+        break;
+    case 'tri4':
+        trier("age", "dsc");
+        break;
+    }
+});
 
+function trier(colonne, ordre){
 
+    // tri par nom
+    if(colonne == "nom"){
+        if(ordre == "asc"){
+            ListePersonnes.sort(function(a,b){
+                if(a.nom < b.nom)
+                    return -1;
+                else if (a.nom > b.nom)
+                    return 1;
+                else
+                    return 0;
+            });
+        }
+        else if(ordre == "dsc"){
+            ListePersonnes.sort(function(a,b){
+                if(a.nom > b.nom)
+                    return -1;
+                else if (a.nom < b.nom)
+                    return 1;
+                else
+                    return 0;
+            });
+        }
+    }
 
+    // tri par age
+    else if(colonne == "age"){
+        if(ordre == "asc"){
+            ListePersonnes.sort(function(a,b){
+                return a.age - b.age;
+            });
+        }
+        else if(ordre == "dsc"){
+            ListePersonnes.sort(function(a,b){
+                return b.age - a.age;
+            });
+        }
+    }
 
-
+    charger();
+}
 
 
 
