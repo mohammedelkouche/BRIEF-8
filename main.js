@@ -115,7 +115,6 @@ MyForm.addEventListener("submit", function(e)
     else {
         erreurTitle.innerHTML = ('Validé');
         erreurTitle.style.color ='#006400';
-        
     }
     
         // --------------- myAuthor -----------------

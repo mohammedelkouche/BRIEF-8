@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <button id = "Button" >click me !</button>
+    <script>
+
+        var paragraphe = document.createElement("p");
+
+        // paragraphe.setAttribute("id","count")
+        paragraphe.id = "count";
+
+        paragraphe.style.color = "red";
+        document.body.appendChild(paragraphe);
+
+        var button = document.getElementById("Button");
+
+        var i = 0 ;
+
+        button.addEventListener("click", function()
+        {
+            i++ ;
+            paragraphe.innerHTML ="Vous avez cliqué "+ i + " fois" ;
+
+           
+            // alert("Vous avez cliqué "+ i + " fois")
+
+        }
+            )
+
+    </script>
+</body>
+</html>

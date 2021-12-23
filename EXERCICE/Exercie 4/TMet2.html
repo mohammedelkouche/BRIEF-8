@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="initial"></p>
+    <p id="ascendant"></p>
+    <p id="descendant"></p>
+    <p id="tri à bulle croissant"></p>
+    <p id="tri à bulle decroissant"></p>
+
+
+
+    <script>
+        par1 = document.getElementById("tri à bulle croissant")
+        par2 = document.getElementById("tri à bulle decroissant")
+
+        //         //------------EXERCICE 1------------
+
+        var T = [12,35,4,71] ;
+
+                //------------- Methode 1 de tri à bulle ------------------
+
+        for(var i=0;i<T.length-1;i++)
+	    {    
+            for( var j=i+1;j<T.length;j++)
+            {
+                if(T[i]>T[j])
+                {
+                    var a ;
+                    a=T[i];
+                    T[i]=T[j];
+                    T[j]=a ;
+                }
+            }  
+        }    
+        par1.innerHTML ="tri à bulle croissant:  "+T;
+        
+        // for(var i=0;i<T.length-1;i++)
+	    // {    
+        //     for( var j=i+1;j<T.length;j++)
+        //     {
+        //         if(T[i]<T[j])
+        //         {
+        //             var a ;
+        //             a=T[i];
+        //             T[i]=T[j];
+        //             T[j]=a ;
+        //         }
+        //     }  
+        // } 
+        // par2.innerHTML = "tri à bulle decroissant:  "+T;
+        
+        // var x = document.getElementById("initial");
+        // x.innerHTML="initial:  "+T ;
+
+                //------------- Methode 2 fuction sort() && reverse() ------------------
+
+
+        // var y = document.getElementById("ascendant");
+        // y.innerHTML= "ascendant:  "+T.sort(function(a,b){return a-b });
+        // // y.innerHTML ="initial:  "+T.sort();
+
+        // var Z = document.getElementById("descendant");
+        // Z.innerHTML= "descendant:  "+T.sort(function(a,b){return b-a })
+        // Z.innerHTML = "descendant:  "+T.sort().reverse();
+
+                //------------EXERCICE 2------------
+
+        // affichage du tableau initial
+        
+        T=["solicode","foot","youtube","eau",]
+
+        // var x = document.getElementById("initial");
+        // x.innerHTML= T ;
+         
+                    //------------- Methode 1 fuction sort() && reverse() ------------------
+
+        // var y = document.getElementById("ascendant");
+        // y.innerHTML = T.sort();
+
+        // var Z = document.getElementById("descendant");
+        // Z.innerHTML = T.sort().reverse();
+
+                    //------------- Methode 2 fuction sort() && reverse() && toUpperCase() && condictions ------------------
+
+        // var y = document.getElementById("ascendant");            
+        // y.innerHTML= T.sort(function(a, b) {
+        // var nameA = a.toUpperCase(); // ignore upper and lowercase
+        // var nameB = b.toUpperCase(); // ignore upper and lowercase
+        
+        // if(nameA < nameB) {
+        //    return -1;
+        // }
+        // else if(nameA > nameB) {
+        //     return 1;
+        // }
+        // else
+        //     return 0;
+        //  } )
+
+        // var Z = document.getElementById("descendant");
+        // Z.innerHTML= T.sort(function(a,b){
+        // var nameA = a.toUpperCase(); // ignore upper and lowercase
+        // var nameB = b.toUpperCase(); // ignore upper and lowercase
+
+        // if(nameA > nameB) {
+        //    return -1;
+        // }
+        // else if(nameA < nameB) {
+        //     return 1;
+        // }
+        // else
+        //     return 0;
+        //  } )
+
+    </script>
+
+</body>
+</html>
