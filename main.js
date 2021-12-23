@@ -13,8 +13,6 @@
     var type = document.getElementsByClassName("type");
     var input = document.getElementsByTagName("input");
 
-    var validationOK = true;
-
     var erreurTitle = document.getElementById("erreurTitle");
     var erreurAuthor = document.getElementById("erreurAuthor");
     var erreurprice = document.getElementById("erreurprice");
@@ -79,7 +77,6 @@
                 }
                 modifier.value = "Edit";
                 document.getElementById("submit").removeAttribute("disabled")
-                // resetForm();
             }
             
         }
