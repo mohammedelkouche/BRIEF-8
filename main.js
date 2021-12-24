@@ -140,25 +140,25 @@ MyForm.addEventListener("submit", function(e)
 
         // --------------- myprice -----------------
 
+        //https://www.sitepoint.com/basic-javascript-regular-expression/
+        
+        var regPrice = /[(0-9)+.?(0-9)*]+/ ;
 
-    if(myPrice.value ==""){
-        erreurprice.innerHTML = ('This field is required');
-        erreurprice.style.color ='red';
-        validationOK = false;
-    }
-    else if(!isNaN(myPrice.value) ){
-        if(myPrice.value>0){
+    if(myPrice.value !==""){
+         
+        if(regPrice.test(myPrice.value)){
             erreurprice.innerHTML = ('Valid');
             erreurprice.style.color ='#006400';
         }
         else{
-            erreurprice.innerHTML = ("Enter a number >0 !");
+            erreurprice.innerHTML = ("Invalid Price Format");
             erreurprice.style.color ='red';
             validationOK = false;
         }
     }
+
     else{
-        erreurprice.innerHTML = ("Enter number");
+        erreurprice.innerHTML = ("This field is required'");
         erreurprice.style.color ='red';
         validationOK = false;
     }
@@ -166,14 +166,26 @@ MyForm.addEventListener("submit", function(e)
 
         // --------------- myEmail -----------------
         
-        if(myEmail.value !==""){
-            
+        var regEmail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,6}$/ ;
+
+    if(myEmail.value !==""){
+
+        if(regEmail.test(myEmail.value) ){
+
+            erreurEmail.innerHTML = ('Valid');
+            erreurEmail.style.color ='#006400';
         }
         else{
-            erreurEmail.innerHTML =('This field is required');
+            erreurEmail.innerHTML =('Invalid Email Format');
             erreurEmail.style.color ='red' ;
             validationOK = false;
-        }
+        }     
+    }
+    else{
+        erreurEmail.innerHTML =('This field is required');
+        erreurEmail.style.color ='red' ;
+        validationOK = false;
+    }
 
         // --------------- mydate -----------------
 
@@ -222,11 +234,11 @@ MyForm.addEventListener("submit", function(e)
         // alert('Formulaire envoyé !') ;
 
                 class book {
-                    constructor(title, author, email, price, date, language, type){
+                    constructor(title, author, price, email, date, language, type){
                         this.title = title
                         this.author = author
-                        this.email = email
                         this.price = price
+                        this.email = email
                         this.date = date
                         this.language = language
                         this.type = type
@@ -235,6 +247,7 @@ MyForm.addEventListener("submit", function(e)
                         return "book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
                     }
                 }
+                var listBooks = [];
 
         // ------------------ Methode 1: insertRow / insertCell --------------------
 
@@ -248,8 +261,9 @@ MyForm.addEventListener("submit", function(e)
                 row.insertCell(0).innerHTML = myTitle.value;
                 row.insertCell(1).innerHTML = myAuthor.value;
                 row.insertCell(2).innerHTML = myPrice.value;
-                row.insertCell(3).innerHTML = myDate.value;
-                row.insertCell(4).innerHTML = myLangue.options[myLangue.selectedIndex].value;
+                row.insertCell(3).innerHTML = myPrice.value;
+                row.insertCell(4).innerHTML = myDate.value;
+                row.insertCell(5).innerHTML = myLangue.options[myLangue.selectedIndex].value;
                 
                 var temp_cell="";
                     for(var i=0 ; i<type.length ; i++){
@@ -258,8 +272,8 @@ MyForm.addEventListener("submit", function(e)
                             temp_cell = type[i].value;
                         }
                     }
-                row.insertCell(5).innerHTML = temp_cell;
-                row.insertCell(6).innerHTML = 
+                row.insertCell(6).innerHTML = temp_cell;
+                row.insertCell(7).innerHTML = 
 
                         "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
                         "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
@@ -267,7 +281,7 @@ MyForm.addEventListener("submit", function(e)
 
                          //--------clear form methode 1 -------
 
-                    for(var j = 0; j<4; j++){
+                    for(var j = 0; j<5; j++){
                         input[j].value = "";
                     } 
                     var clear = document.getElementsByClassName("type");

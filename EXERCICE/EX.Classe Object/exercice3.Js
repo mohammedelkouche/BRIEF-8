@@ -49,7 +49,7 @@ function charger(){
     }
 }
 
-//------- validé et et charger ListePersonnes javascript
+//------- validé et charger ListePersonnes javascript
 
 function AJOUTER(){
     if(text.value!="" && Nombre.value!=""){
