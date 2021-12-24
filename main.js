@@ -165,8 +165,9 @@ MyForm.addEventListener("submit", function(e)
     
 
         // --------------- myEmail -----------------
+      
         
-        var regEmail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,6}$/ ;
+    var regEmail = /^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,6}$/ ;
 
     if(myEmail.value !==""){
 
@@ -231,7 +232,7 @@ MyForm.addEventListener("submit", function(e)
 
     if(validationOK ){
 
-        // alert('Formulaire envoyé !') ;
+            // créer une  class book
 
                 class book {
                     constructor(title, author, price, email, date, language, type){
@@ -244,42 +245,70 @@ MyForm.addEventListener("submit", function(e)
                         this.type = type
                     }
                     DétailOuvrage(){
-                        return "book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
+                        return "The book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
                     }
                 }
+                
                 var listBooks = [];
 
+                // OBJET  "BOOK" 
+
+                var BOOK = new book(myTitle.value ,myAuthor.value ,myPrice.value ,myEmail.value ,myDate.value ,myLangue.options[myLangue.selectedIndex].value ,temp_cell)
+                listBooks.push(BOOK);
         // ------------------ Methode 1: insertRow / insertCell --------------------
 
+                // -------------- Insert table  from listBooks  ----------------
+
+                for(i=0 ; i< listBooks.length ;i++){
+                
+
+                    var row = Table.insertRow(Table.rows.length);
+
+                    row.insertCell(0).innerHTML = listBooks[i].title ;
+                    row.insertCell(1).innerHTML = listBooks[i].author;
+                    row.insertCell(2).innerHTML = listBooks[i].price;
+                    row.insertCell(3).innerHTML = listBooks[i].email;
+                    row.insertCell(4).innerHTML = listBooks[i]. date;
+                    row.insertCell(5).innerHTML = listBooks[i].language;
+                    row.insertCell(6).innerHTML = listBooks[i].type;  
+                    row.insertCell(7).innerHTML = 
+                                                "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
+                                                "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
+                    var masseage = listBooks[i].DétailOuvrage();
+                    alert(masseage) ;
+                }
+
+                
                 // -------------- Insert Row ----------------
 
                 // var row = Table.insertRow(-1);
-                var row = Table.insertRow(Table.rows.length);
+                // var row = Table.insertRow(Table.rows.length);
+
 
                 // -------------- Insert cells to the Row ----------------
 
-                row.insertCell(0).innerHTML = myTitle.value;
-                row.insertCell(1).innerHTML = myAuthor.value;
-                row.insertCell(2).innerHTML = myPrice.value;
-                row.insertCell(3).innerHTML = myPrice.value;
-                row.insertCell(4).innerHTML = myDate.value;
-                row.insertCell(5).innerHTML = myLangue.options[myLangue.selectedIndex].value;
+                // row.insertCell(0).innerHTML = myTitle.value;
+                // row.insertCell(1).innerHTML = myAuthor.value;
+                // row.insertCell(2).innerHTML = myPrice.value;
+                // row.insertCell(3).innerHTML = myEmail.value;
+                // row.insertCell(4).innerHTML = myDate.value;
+                // row.insertCell(5).innerHTML = myLangue.options[myLangue.selectedIndex].value;
                 
-                var temp_cell="";
-                    for(var i=0 ; i<type.length ; i++){
-                        if(type[i].checked)
-                        {
-                            temp_cell = type[i].value;
-                        }
-                    }
-                row.insertCell(6).innerHTML = temp_cell;
-                row.insertCell(7).innerHTML = 
+                // var temp_cell="";
+                //     for(var i=0 ; i<type.length ; i++){
+                //         if(type[i].checked)
+                //         {
+                //             temp_cell = type[i].value;
+                //         }
+                //     }
+                // row.insertCell(6).innerHTML = temp_cell;
+                // row.insertCell(7).innerHTML = 
 
-                        "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
-                        "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
+                //         "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
+                //         "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
                         
 
-                         //--------clear form methode 1 -------
+                        //--------clear form methode 1 -------
 
                     for(var j = 0; j<5; j++){
                         input[j].value = "";
