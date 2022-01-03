@@ -63,11 +63,10 @@
                     <label  for="">Langue:</label>
                     <p id="erreurLangue" class="error"></p>
                     <select id="langue" name="Trie" >
-                        <option value="default" id="select" disabled hidden selected value="">Trier</option>    
                         <option value="default" id="select" disabled hidden selected value="">selectionez</option>
-                        <option value="Arabe">Arabe</option>
-                        <option value="Français">Français</option>
-                        <option value="Anglais">Anglais</option>
+                        <option value="Arabe">Arabic</option>
+                        <option value="Français">French </option>
+                        <option value="Anglais">English</option>
                     </select> <br><br>
                 </div>
 
@@ -99,19 +98,29 @@
     <div id="Table_div">
         <table id="Table"  >
             <caption>THE BOOK INFORMATION</caption>
+        <THead>
             <tr>
                 
                 <th >Title</th>
                 <th >Author</th>
                 <th >Price</th>
+                <th >Email</th>
                 <th >Publication Date</th>
                 <th >Langue</th>
                 <th >Type</th>
                 <th >Action</th>
 
             </tr>
-        </table>
+        </THead>
+        <Tbody id="tableBody">
 
+        </Tbody>
+        </table>
+        
+
+    </div>
+    <div>
+        <p id="mesage"></p>
     </div>
     
     <script src="main.js"></script>

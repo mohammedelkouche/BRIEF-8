@@ -25,8 +25,37 @@
     var Essai = document.getElementById("Essai");
     var BandeDessinée = document.getElementById("Bande-Dessinée");
     var Table = document.getElementsByTagName("table")[0];
+    var tableBody = document.getElementById("tableBody");
+    var listBooks = [];
 
- // var mytype = /^[a-zA-Z-\s]+$/;
+    // créer une  class book
+
+        class book {
+            constructor(title, author, price, email, date, language, type){
+                this.title = title
+                this.author = author
+                this.price = price
+                this.email = email
+                this.date = date
+                this.language = language
+                this.type = type
+                }
+            Detailbook(){
+                return "The book " + this.title + " is a " + this.type + " in " + this.language +" language, written by " + this.author + " and published on the " + this.date + " .The price of " +this.title+ " is " + this.price+ " Dhs. "
+            }
+        }
+
+    //TRIE l'ordre alphabétique des titres. 
+        function trie(){
+            listBooks.sort(function(a,b){
+                if(a.title.toUpperCase()< b.title.toUpperCase())
+                    return -1;
+                else if (a.title.toUpperCase() > b.title.toUpperCase())
+                    return 1;
+                else
+                    return 0;
+            });
+        }
 
 // ---------------------- function ------------------------
 
@@ -45,18 +74,27 @@
            
         function EditRow(modifier) {
             var i = modifier.parentNode.parentNode.rowIndex;
-            var row = Table.rows[i];
+            var row = tableBody.rows[i];
             if (modifier.value == "Edit") 
             {
                 myTitle.value  = row.cells[0].innerHTML;
                 myAuthor.value = row.cells[1].innerHTML;
                 myPrice.value  = row.cells[2].innerHTML;
-                myDate.value   = row.cells[3].innerHTML;
-                myLangue.value = row.cells[4].innerHTML;
+                myEmail.value  = row.cells[3].innerHTML;
+                myDate.value   = row.cells[4].innerHTML;
+                myLangue.value = row.cells[5].innerHTML;
+                
+                // row.insertCell(0).innerHTML = listBooks[i].title ;
+                // row.insertCell(1).innerHTML = listBooks[i].author;
+                // row.insertCell(2).innerHTML = listBooks[i].price;
+                // row.insertCell(3).innerHTML = listBooks[i].email;
+                // row.insertCell(4).innerHTML = listBooks[i]. date;
+                // row.insertCell(5).innerHTML = listBooks[i].language;
+                // row.insertCell(6).innerHTML = listBooks[i].type;  
 
                 for (var i = 0; i < type.length; i++) {
 
-                    if (row.cells[5].innerHTML == type[i].value) {
+                    if (row.cells[6].innerHTML == type[i].value) {
                         type[i].checked = true;
                     }
                     
@@ -68,11 +106,12 @@
                 row.cells[0].innerHTML = myTitle.value;
                 row.cells[1].innerHTML = myAuthor.value ;
                 row.cells[2].innerHTML = myPrice.value;
-                row.cells[3].innerHTML = myDate.value;
-                row.cells[4].innerHTML = myLangue.options[myLangue.selectedIndex].value;
+                row.cells[3].innerHTML = myEmail.value ;
+                row.cells[4].innerHTML = myDate.value;
+                row.cells[5].innerHTML = myLangue.options[myLangue.selectedIndex].value;
                 for (var i = 0; i < type.length; i++) {
                     if (type[i].checked==true) {
-                        row.cells[5].innerHTML = type[i].value;
+                        row.cells[6].innerHTML = type[i].value;
                     }
                     // type[i].checked==(true ) 
                     // row.cells[5](.innerHTML)
@@ -232,29 +271,30 @@ MyForm.addEventListener("submit", function(e)
 
     if(validationOK ){
 
-            // créer une  class book
-
-                class book {
-                    constructor(title, author, price, email, date, language, type){
-                        this.title = title
-                        this.author = author
-                        this.price = price
-                        this.email = email
-                        this.date = date
-                        this.language = language
-                        this.type = type
-                    }
-                    DétailOuvrage(){
-                        return "The book" + title + "is a" + type + "in" + language +"language, written by" + author + "and published on the" + date + ". The price of" +title+ " is" + price+ "Dhs. "
-                    }
-                }
+        
                 
-                var listBooks = [];
+                var temp_cell="";
+                    for(var i=0 ; i<type.length ; i++){
+                        if(type[i].checked)
+                        {
+                            temp_cell = type[i].value;
+                        }
+                    }
 
-                // OBJET  "BOOK" 
+            // OBJET  "BOOK" 
 
                 var BOOK = new book(myTitle.value ,myAuthor.value ,myPrice.value ,myEmail.value ,myDate.value ,myLangue.options[myLangue.selectedIndex].value ,temp_cell)
                 listBooks.push(BOOK);
+
+            // vider la table html µ
+
+                tableBody.innerHTML="";  
+                
+            // TRIE     
+
+                trie()
+
+        
         // ------------------ Methode 1: insertRow / insertCell --------------------
 
                 // -------------- Insert table  from listBooks  ----------------
@@ -262,22 +302,22 @@ MyForm.addEventListener("submit", function(e)
                 for(i=0 ; i< listBooks.length ;i++){
                 
 
-                    var row = Table.insertRow(Table.rows.length);
+                    var row = tableBody.insertRow(tableBody.rows.length);
 
                     row.insertCell(0).innerHTML = listBooks[i].title ;
                     row.insertCell(1).innerHTML = listBooks[i].author;
                     row.insertCell(2).innerHTML = listBooks[i].price;
                     row.insertCell(3).innerHTML = listBooks[i].email;
-                    row.insertCell(4).innerHTML = listBooks[i]. date;
+                    row.insertCell(4).innerHTML = listBooks[i].date;
                     row.insertCell(5).innerHTML = listBooks[i].language;
                     row.insertCell(6).innerHTML = listBooks[i].type;  
                     row.insertCell(7).innerHTML = 
                                                 "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
                                                 "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
-                    var masseage = listBooks[i].DétailOuvrage();
-                    alert(masseage) ;
+                    // alert(mesage) ;
                 }
-
+                var mesage = BOOK.Detailbook();
+                document.getElementById("mesage").innerHTML= mesage ;
                 
                 // -------------- Insert Row ----------------
 
@@ -294,13 +334,7 @@ MyForm.addEventListener("submit", function(e)
                 // row.insertCell(4).innerHTML = myDate.value;
                 // row.insertCell(5).innerHTML = myLangue.options[myLangue.selectedIndex].value;
                 
-                // var temp_cell="";
-                //     for(var i=0 ; i<type.length ; i++){
-                //         if(type[i].checked)
-                //         {
-                //             temp_cell = type[i].value;
-                //         }
-                //     }
+                
                 // row.insertCell(6).innerHTML = temp_cell;
                 // row.insertCell(7).innerHTML = 
 
@@ -310,7 +344,7 @@ MyForm.addEventListener("submit", function(e)
 
                         //--------clear form methode 1 -------
 
-                    for(var j = 0; j<5; j++){
+                    for(var j = 0; j<6; j++){
                         input[j].value = "";
                     } 
                     var clear = document.getElementsByClassName("type");
