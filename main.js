@@ -30,20 +30,38 @@
 
     // créer une  class book
 
-        class book {
-            constructor(title, author, price, email, date, language, type){
-                this.title = title
-                this.author = author
-                this.price = price
-                this.email = email
-                this.date = date
-                this.language = language
-                this.type = type
-                }
-            Detailbook(){
-                return "The book " + this.title + " is a " + this.type + " in " + this.language +" language, written by " + this.author + " and published on the " + this.date + " .The price of " +this.title+ " is " + this.price+ " Dhs. "
+    class book {
+        constructor(title, author, price, email, date, language, type){
+            this.title = title
+            this.author = author
+            this.price = price
+            this.email = email
+            this.date = date
+            this.language = language
+            this.type = type
             }
+        Detailbook(){
+            return "The book " + this.title + " is a " + this.type + " in " + this.language +" language, written by " + this.author + " and published on the " + this.date + " .The price of " +this.title+ " is " + this.price+ " Dhs. "
         }
+    }
+
+        // localstorage
+
+    var getdata = "" ;
+    getdata=JSON.parse(localStorage.getItem("data"));
+    if(getdata!== null){
+        for (i=0 ; i<getdata.length;i++ ){
+        
+            var list =new book(getdata[i].title,getdata[i].author,getdata[i].price,getdata[i].email,getdata[i].date,getdata[i].language,getdata[i].type)
+            listBooks.push(list);
+        }
+    }
+    
+
+    
+
+    
+
 
     //TRIE l'ordre alphabétique des titres. 
         function trie(){
@@ -293,6 +311,7 @@ MyForm.addEventListener("submit", function(e)
             // TRIE     
 
                 trie()
+                // localStorage.setItem("data", JSON.stringify(listBooks));
 
         
         // ------------------ Methode 1: insertRow / insertCell --------------------
@@ -314,33 +333,10 @@ MyForm.addEventListener("submit", function(e)
                     row.insertCell(7).innerHTML = 
                                                 "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
                                                 "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
-                    // alert(mesage) ;
                 }
                 var mesage = BOOK.Detailbook();
                 document.getElementById("mesage").innerHTML= mesage ;
-                
-                // -------------- Insert Row ----------------
-
-                // var row = Table.insertRow(-1);
-                // var row = Table.insertRow(Table.rows.length);
-
-
-                // -------------- Insert cells to the Row ----------------
-
-                // row.insertCell(0).innerHTML = myTitle.value;
-                // row.insertCell(1).innerHTML = myAuthor.value;
-                // row.insertCell(2).innerHTML = myPrice.value;
-                // row.insertCell(3).innerHTML = myEmail.value;
-                // row.insertCell(4).innerHTML = myDate.value;
-                // row.insertCell(5).innerHTML = myLangue.options[myLangue.selectedIndex].value;
-                
-                
-                // row.insertCell(6).innerHTML = temp_cell;
-                // row.insertCell(7).innerHTML = 
-
-                //         "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
-                //         "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
-                        
+                 
 
                         //--------clear form methode 1 -------
 
