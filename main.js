@@ -44,8 +44,12 @@
             return "The book " + this.title + " is a " + this.type + " in " + this.language +" language, written by " + this.author + " and published on the " + this.date + " .The price of " +this.title+ " is " + this.price+ " Dhs. "
         }
     }
+    
 
         // localstorage
+        /* JSON.parse
+        When receiving data from a web server, the data is always a string.
+        Parse the data with JSON.parse(), and the data becomes a JavaScript object.*/
 
     var getdata = JSON.parse(localStorage.getItem("data"));
     if(getdata!= null){
@@ -143,16 +147,16 @@
             }
             else {
                 listBooks[i].title = myTitle.value;
-                listBooks[i].myAuthor = myAuthor.value ;
-                listBooks[i].myPrice = myPrice.value;
-                listBooks[i].myEmail = myEmail.value ;
-                listBooks[i].myDate = myDate.value;
-                listBooks[i].myLangue = myLangue.value;
+                listBooks[i].author = myAuthor.value ;
+                listBooks[i].price = myPrice.value;
+                listBooks[i].email = myEmail.value ;
+                listBooks[i].date = myDate.value;
+                listBooks[i].language = myLangue.value;
                 for (var j = 0; j < type.length; j++) {
-                    if (type[j].checked==true) {
-                        listBooks[j].type = type[j].value;
+                    if (type[j].checked) {
+                        listBooks[i].type = type[j].value;
                     }
-            }
+                }
             trie ();
             tableBody.innerHTML="";  
             localStorage.setItem("data", JSON.stringify(listBooks));
@@ -160,6 +164,14 @@
             modifier.value = "Edit";
             document.getElementById("submit").removeAttribute("disabled")            
         } 
+    }
+    function printTable(){
+        var tableDiv = document.getElementsByTagName("tbody")[0].innerHTML;
+        var bodyContent = document.body.innerHTML;
+
+        document.body.innerHTML = tableDiv;
+        window.print();
+        document.body.innerHTML = bodyContent;
     }
 
 
