@@ -114,9 +114,11 @@ input[type="submit"]:hover{
     background: #4b99d8;
 }
 p{
-    font-size: 20px;
+    font-size: 30px;
     color: #FFF;
     text-align: center;
+    margin: 0 20px;
+    font-weight: bold;
 }
 
 
