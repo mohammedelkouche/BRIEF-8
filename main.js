@@ -60,6 +60,8 @@
             listBooks.push(list);
         }
     }
+    insertTable()
+
     // document.getElementById("PRINT-BTN").addEventListener("click", function (e){
     // e.preventDefault();
     function printTable(){
