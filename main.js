@@ -26,6 +26,7 @@
     var BandeDessinée = document.getElementById("Bande-Dessinée");
     var Table = document.getElementsByTagName("table")[0];
     var tableBody = document.getElementById("tableBody");
+    var Table_div = document.getElementById("Table_div");
     var listBooks = [];
 
     // créer une  class book
@@ -53,19 +54,23 @@
 
     var getdata = JSON.parse(localStorage.getItem("data"));
     if(getdata!= null){
-        for (i=0 ; i<getdata.length;i++ ){
+        for (i=0 ; i<getdata.length;i++){
         
             var list =new book(getdata[i].title,getdata[i].author,getdata[i].price,getdata[i].email,getdata[i].date,getdata[i].language,getdata[i].type)
             listBooks.push(list);
         }
     }
-    
+    // document.getElementById("PRINT-BTN").addEventListener("click", function (e){
+    // e.preventDefault();
+    function printTable(){
+        var tableDiv = Table_div.innerHTML;
+        var temp_table = document.body.innerHTML;
+        document.body.innerHTML = tableDiv;
+        window.print();
+        document.body.innerHTML = temp_table;
 
-    
-
-    
-
-
+    }
+// })
     //TRIE l'ordre alphabétique des titres. 
         function trie(){
             listBooks.sort(function(a,b){
@@ -115,6 +120,11 @@
                     listBooks.splice(i,1);
                     trie ();
                     localStorage.setItem("data", JSON.stringify(listBooks));
+                    tableBody = document.getElementById("tableBody");
+                    //console.log(tableBody.hasChildNodes());
+                    // for(var i=0; i<tableBody.rows.length; i++)
+                    //     tableBody.rows[i].remove();
+                    console.log(tableBody);
                     tableBody.innerHTML="";  
                     insertTable() ;
                 }    
@@ -165,15 +175,7 @@
             document.getElementById("submit").removeAttribute("disabled")            
         } 
     }
-    function printTable(){
-        var tableDiv = document.getElementsByTagName("tbody")[0].innerHTML;
-        var bodyContent = document.body.innerHTML;
-
-        document.body.innerHTML = tableDiv;
-        window.print();
-        document.body.innerHTML = bodyContent;
-    }
-
+    
 
 MyForm.addEventListener("submit", function(e)
 {
@@ -382,4 +384,6 @@ MyForm.addEventListener("submit", function(e)
     
     }
                     
-) 
+)
+
+
