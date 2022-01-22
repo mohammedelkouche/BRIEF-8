@@ -107,7 +107,24 @@
                                             "<input class='button' id='UpdateButton' onclick='EditRow(this)' type='button' value='Edit'> " +
                                             "<input class='button' id='DeleteButton' onclick='deleteRow(this)' type='button' value='Delete'>";
                 }
-            }    
+            } 
+
+                //--------clear form methode 1 -------
+        function resetForm(){
+            for(var j = 0; j<5; j++){
+                input[j].value = "";
+                } 
+        
+            myLangue.value=""; 
+        
+            var clear = document.getElementsByClassName("type");
+            for (var j = 0 ; j < clear.length; j++) {
+                if (clear[j].type == "radio") {
+                clear[j].checked = false;
+                }
+            }
+        }            
+               
                        
 
 // ---------------------- function ------------------------
@@ -136,8 +153,6 @@
            
         function EditRow(modifier) {
             var i = modifier.parentNode.parentNode.rowIndex-1;
-            tableBody = document.getElementById("tableBody");
-
             var row = tableBody.rows[i];
             if (modifier.value == "Edit") 
             {
@@ -369,22 +384,7 @@ MyForm.addEventListener("submit", function(e)
                 document.getElementById("mesage").innerHTML= mesage ;
                  
 
-                        //--------clear form methode 1 -------
-                    function resetForm(){
-                        for(var j = 0; j<5; j++){
-                            input[j].value = "";
-                        } 
-    
-                        myLangue.value=""; 
-    
-                        var clear = document.getElementsByClassName("type");
-                        for (var j = 0 ; j < clear.length; j++) {
-                                if (clear[j].type == "radio") {
-                                clear[j].checked = false;
-                                }
-                            }
-                    }
-                    resetForm();
+            resetForm();
 
 
         }  
