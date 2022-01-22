@@ -148,7 +148,7 @@
                 myDate.value   = row.cells[4].innerHTML;
                 myLangue.value = row.cells[5].innerHTML;
 
-                for ( i = 0; i < type.length; i++) {
+                for ( var i = 0; i < type.length; i++) {
 
                     if (row.cells[6].innerHTML == type[i].value) {
                         type[i].checked = true;
@@ -170,12 +170,14 @@
                         listBooks[i].type = type[j].value;
                     }
                 }
+                tableBody.innerHTML="";  
+
             trie ();
-            tableBody.innerHTML="";  
             localStorage.setItem("data", JSON.stringify(listBooks));
             insertTable() ;
             modifier.value = "Edit";
-            document.getElementById("submit").removeAttribute("disabled")            
+            document.getElementById("submit").removeAttribute("disabled")   
+            resetForm() ;         
         } 
     }
     
@@ -368,19 +370,21 @@ MyForm.addEventListener("submit", function(e)
                  
 
                         //--------clear form methode 1 -------
-
-                    for(var j = 0; j<5; j++){
-                        input[j].value = "";
-                    } 
-
-                    myLangue.value=""; 
-
-                    var clear = document.getElementsByClassName("type");
-                    for (var j = 0 ; j < clear.length; j++) {
-                            if (clear[j].type == "radio") {
-                            clear[j].checked = false;
+                    function resetForm(){
+                        for(var j = 0; j<5; j++){
+                            input[j].value = "";
+                        } 
+    
+                        myLangue.value=""; 
+    
+                        var clear = document.getElementsByClassName("type");
+                        for (var j = 0 ; j < clear.length; j++) {
+                                if (clear[j].type == "radio") {
+                                clear[j].checked = false;
+                                }
                             }
-                        }
+                    }
+                    resetForm();
 
 
         }  
