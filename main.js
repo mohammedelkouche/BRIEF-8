@@ -136,6 +136,7 @@
            
         function EditRow(modifier) {
             var i = modifier.parentNode.parentNode.rowIndex-1;
+            tableBody = document.getElementById("tableBody");
 
             var row = tableBody.rows[i];
             if (modifier.value == "Edit") 
