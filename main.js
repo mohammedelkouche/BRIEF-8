@@ -69,6 +69,8 @@
         var temp_table = document.body.innerHTML;
         document.body.innerHTML = tableDiv;
         window.print();
+        // add temporary solution 
+        window.location.reload()
         document.body.innerHTML = temp_table;
 
     }
